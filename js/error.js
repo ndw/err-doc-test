@@ -85,8 +85,10 @@
       }
 
       console.log("BASE: " + base);
-      //window.location.href = redirect;
-
+      if (base.match(/^[0-9]/) {
+        window.location.href = redirect;
+        return;
+      }
 
       p.innerHTML = `Not found. Open an issue? ::${redirect}::`;
     });
