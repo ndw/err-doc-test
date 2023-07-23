@@ -78,6 +78,16 @@
         return;
       }
 
-      p.innerHTML = `Not found. Open an issue? ::${base}::`;
+      if (errdoctest) {
+        redirect = `${scheme}${hostname}/err-doc-test/${versions.currentRelease}/${href}`;
+      } else {
+        redirect = `${scheme}${hostname}/${versions.currentRelease}/${href}`;
+      }
+
+      console.log("BASE: " + base);
+      //window.location.href = redirect;
+
+
+      p.innerHTML = `Not found. Open an issue? ::${redirect}::`;
     });
 })();
