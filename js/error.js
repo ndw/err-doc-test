@@ -6,34 +6,52 @@
     return;
   }
 
-  let pos = href.indexOf("//");
-  let scheme = href.substring(0, pos+2);
-  href = href.substring(pos+2);
+  fetch("/err-doc-test/versions.json")
+  .then(data => {
+    console.log(data);
+    let pos = href.indexOf("//");
+    let scheme = href.substring(0, pos+2);
+    href = href.substring(pos+2);
 
-  pos = href.indexOf("/");
-  if (pos < 0) {
-    return;
-  }
+    pos = href.indexOf("/");
+    if (pos < 0) {
+      return;
+    }
 
-  let hostname = href.substring(0, pos);
-  href = href.substring(pos+1);
+    let hostname = href.substring(0, pos);
+    href = href.substring(pos+1);
 
-  pos = href.indexOf("/");
-  let base = "";
-  if (pos > 0) {
-    base = href.substring(0, pos);
-  }
+    pos = href.indexOf("/");
+    let base = "";
+    if (pos > 0) {
+      base = href.substring(0, pos);
+    }
 
-/*
-  if (base == "") {
-    base = "3.0.0j";
-    href = "3.0.0j/changelog.html";
-  }
-*/
+    let errdoctest = false;
+    if (base === "err-doc-test") {
+      errdoctest = true;
+      pos = href.indexOf("/");
+      if (pos > 0) {
+        base = href.substring(0, pos);
+        href = href.substring(pos+1);
+      }
+    }
 
-  if (base == "") {
-    window.location.href = `${scheme}/${hostname}/current/${href}`;
-  }
+    /*
+      if (base == "") {
+      base = "3.0.0j";
+      href = "3.0.0j/changelog.html";
+      }
+    */
 
-  p.innerHTML = `${base}, ${href}`;
+    if (base == "") {
+      if (errdoctest) {
+        window.location.href = `${scheme}/${hostname}/err-doc-test/current/${href}`;
+      } else {
+        window.location.href = `${scheme}/${hostname}/current/${href}`;
+      }
+    }
+
+    p.innerHTML = `${base}, ${href}`;
+  });
 })();
