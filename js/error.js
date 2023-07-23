@@ -56,6 +56,14 @@
         window.location.href = redirect;
       }
 
-      p.innerHTML = `${base}, ${href}<br/>${redirect}`;
+      if (base === versions.currentRelease) {
+        p.innerHTML = `Can't find it in the current release, perhaps in ${scheme}${hostname}, ${href}`;
+      }
+
+      if (base === versions.ninemlVersion) {
+        p.innerHTML = `Can't find it in the beta release, perhaps in ${scheme}${hostname}, ${href}`;
+      }
+
+      p.innerHTML = `Not found. Open an issue?`;
     });
 })();
