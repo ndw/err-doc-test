@@ -30,6 +30,8 @@
         base = href.substring(0, pos);
       }
 
+      console.log(`base: ${base}, href: ${href}`);
+
       let errdoctest = false;
       if (base === "err-doc-test") {
         errdoctest = true;
@@ -41,15 +43,8 @@
         }
       }
 
-      /*
-        if (base == "") {
-        base = "3.0.0j";
-        href = "3.0.0j/changelog.html";
-        }
-      */
-
       let redirect = "";
-      if (base == "") {
+      if (base === "") {
         if (errdoctest) {
           redirect = `${scheme}/${hostname}/err-doc-test/${versions.currentRelease}/${href}`;
         } else {
