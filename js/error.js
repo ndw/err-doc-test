@@ -8,7 +8,8 @@
 
   fetch("/err-doc-test/versions.json")
     .then(response => response.json())
-    .then(versions => {
+    .then(data => {
+      const versions = data.versions;
       console.log(versions);
 
       let pos = href.indexOf("//");
