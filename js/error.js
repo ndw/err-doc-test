@@ -34,12 +34,14 @@
 
       let errdoctest = false;
       if (base === "err-doc-test") {
+        console.log("EDT");
         errdoctest = true;
         base = "";
         pos = href.indexOf("/");
         if (pos > 0) {
           base = href.substring(0, pos);
           href = href.substring(pos+1);
+          console.log(`base2: ${base}, href2: ${href}`);
         }
       }
 
