@@ -58,10 +58,12 @@
 
       if (base === versions.currentRelease) {
         p.innerHTML = `Can't find it in the current release, perhaps in ${scheme}${hostname}, ${href}`;
+        return;
       }
 
       if (base === versions.ninemlVersion) {
         p.innerHTML = `Can't find it in the beta release, perhaps in ${scheme}${hostname}, ${href}`;
+        return;
       }
 
       p.innerHTML = `Not found. Open an issue? ::${base}::`;
