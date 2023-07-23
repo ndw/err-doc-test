@@ -57,12 +57,24 @@
       }
 
       if (base === versions.currentRelease) {
-        p.innerHTML = `Can't find it in the current release, perhaps in ${scheme}${hostname}, ${href}`;
+        if (errdoctest) {
+          redirect = `${scheme}${hostname}/err-doc-test/${versions.ninemlVersion}/${href}`;
+        } else {
+          redirect = `${scheme}${hostname}/${versions.ninemlVersion}/${href}`;
+        }
+
+        p.innerHTML = `Can't find it in the current release, perhaps in ${scheme}${hostname}, ${redirect}`;
         return;
       }
 
       if (base === versions.ninemlVersion) {
-        p.innerHTML = `Can't find it in the beta release, perhaps in ${scheme}${hostname}, ${href}`;
+        if (errdoctest) {
+          redirect = `${scheme}${hostname}/err-doc-test/${versions.currentRelease}/${href}`;
+        } else {
+          redirect = `${scheme}${hostname}/${versions.currentRelease}/${href}`;
+        }
+
+        p.innerHTML = `Can't find it in the beta release, perhaps in ${scheme}${hostname}, ${redirect}`;
         return;
       }
 
