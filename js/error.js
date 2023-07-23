@@ -37,6 +37,7 @@
         console.log("EDT");
         errdoctest = true;
         base = "";
+        href = href.substring(12);
         pos = href.indexOf("/");
         if (pos > 0) {
           base = href.substring(0, pos);
