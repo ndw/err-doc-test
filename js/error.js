@@ -37,7 +37,7 @@
         console.log("EDT");
         errdoctest = true;
         base = "";
-        href = href.substring(12);
+        href = href.substring(13);
         pos = href.indexOf("/");
         if (pos > 0) {
           base = href.substring(0, pos);
@@ -49,10 +49,11 @@
       let redirect = "";
       if (base === "") {
         if (errdoctest) {
-          redirect = `${scheme}/${hostname}/err-doc-test/${versions.currentRelease}/${href}`;
+          redirect = `${scheme}${hostname}/err-doc-test/${versions.currentRelease}/${href}`;
         } else {
-          redirect = `${scheme}/${hostname}/${versions.currentRelease}/${href}`;
+          redirect = `${scheme}${hostname}/${versions.currentRelease}/${href}`;
         }
+        //window.location.href = redirect;
       }
 
       p.innerHTML = `${base}, ${href}<br/>${redirect}`;
