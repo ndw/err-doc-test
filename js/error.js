@@ -53,7 +53,7 @@
         } else {
           redirect = `${scheme}${hostname}/${versions.currentRelease}/${href}`;
         }
-        //window.location.href = redirect;
+        window.location.href = redirect;
       }
 
       p.innerHTML = `${base}, ${href}<br/>${redirect}`;
