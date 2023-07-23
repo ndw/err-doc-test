@@ -8,7 +8,9 @@
 
   fetch("/err-doc-test/versions.json")
   .then(data => {
-    console.log(data);
+    let versions = data.body;
+    console.log(versions);
+
     let pos = href.indexOf("//");
     let scheme = href.substring(0, pos+2);
     href = href.substring(pos+2);
@@ -30,6 +32,7 @@
     let errdoctest = false;
     if (base === "err-doc-test") {
       errdoctest = true;
+      base = "";
       pos = href.indexOf("/");
       if (pos > 0) {
         base = href.substring(0, pos);
@@ -44,14 +47,15 @@
       }
     */
 
+    let redirect = "";
     if (base == "") {
       if (errdoctest) {
-        window.location.href = `${scheme}/${hostname}/err-doc-test/current/${href}`;
+        redirect = `${scheme}/${hostname}/err-doc-test/${versions.currentRelease}/${href}`;
       } else {
-        window.location.href = `${scheme}/${hostname}/current/${href}`;
+        redirect = `${scheme}/${hostname}/${versions.currentRelease}/${href}`;
       }
     }
 
-    p.innerHTML = `${base}, ${href}`;
+    p.innerHTML = `${base}, ${href}<br/>${redirect}`;
   });
 })();
