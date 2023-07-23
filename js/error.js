@@ -58,5 +58,4 @@
 
       p.innerHTML = `${base}, ${href}<br/>${redirect}`;
     });
-  });
 })();
