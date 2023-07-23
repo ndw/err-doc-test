@@ -63,7 +63,7 @@
           redirect = `${scheme}${hostname}/${versions.ninemlVersion}/${href}`;
         }
 
-        p.innerHTML = `Can't find it in the current release, perhaps in ${scheme}${hostname}, ${redirect}`;
+        p.innerHTML = `Can't find it in the current release, perhaps in ${redirect}`;
         return;
       }
 
@@ -74,7 +74,7 @@
           redirect = `${scheme}${hostname}/${versions.currentRelease}/${href}`;
         }
 
-        p.innerHTML = `Can't find it in the beta release, perhaps in ${scheme}${hostname}, ${redirect}`;
+        p.innerHTML = `Can't find it in the beta release, perhaps in ${redirect}`;
         return;
       }
 
