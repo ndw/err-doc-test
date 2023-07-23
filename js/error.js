@@ -85,7 +85,7 @@
       }
 
       console.log("BASE: " + base);
-      if (base.match(/^[0-9]/) {
+      if (base.match(/^[0-9]/)) {
         window.location.href = redirect;
         return;
       }
