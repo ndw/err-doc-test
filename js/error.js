@@ -64,6 +64,6 @@
         p.innerHTML = `Can't find it in the beta release, perhaps in ${scheme}${hostname}, ${href}`;
       }
 
-      p.innerHTML = `Not found. Open an issue?`;
+      p.innerHTML = `Not found. Open an issue? ::${base}::`;
     });
 })();
