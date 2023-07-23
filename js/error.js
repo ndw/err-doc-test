@@ -7,66 +7,56 @@
   }
 
   fetch("/err-doc-test/versions.json")
-  .then(data => {
-    let reader = data.body.getReader();
-    reader.read().then(function pump({ done, value }) {
-      if (done) {
-        let versions = value;
+    .then(response => response.json())
+    .then(versions => {
+      console.log(versions);
 
-        console.log(versions);
+      let pos = href.indexOf("//");
+      let scheme = href.substring(0, pos+2);
+      href = href.substring(pos+2);
 
-        let pos = href.indexOf("//");
-        let scheme = href.substring(0, pos+2);
-        href = href.substring(pos+2);
-
-        pos = href.indexOf("/");
-        if (pos < 0) {
-          return;
-        }
-
-        let hostname = href.substring(0, pos);
-        href = href.substring(pos+1);
-
-        pos = href.indexOf("/");
-        let base = "";
-        if (pos > 0) {
-          base = href.substring(0, pos);
-        }
-
-        let errdoctest = false;
-        if (base === "err-doc-test") {
-          errdoctest = true;
-          base = "";
-          pos = href.indexOf("/");
-          if (pos > 0) {
-            base = href.substring(0, pos);
-            href = href.substring(pos+1);
-          }
-        }
-
-        /*
-          if (base == "") {
-          base = "3.0.0j";
-          href = "3.0.0j/changelog.html";
-          }
-        */
-
-        let redirect = "";
-        if (base == "") {
-          if (errdoctest) {
-            redirect = `${scheme}/${hostname}/err-doc-test/${versions.currentRelease}/${href}`;
-          } else {
-            redirect = `${scheme}/${hostname}/${versions.currentRelease}/${href}`;
-          }
-        }
-
-        p.innerHTML = `${base}, ${href}<br/>${redirect}`;
+      pos = href.indexOf("/");
+      if (pos < 0) {
         return;
       }
-      return reader.read().then(pump);
+
+      let hostname = href.substring(0, pos);
+      href = href.substring(pos+1);
+
+      pos = href.indexOf("/");
+      let base = "";
+      if (pos > 0) {
+        base = href.substring(0, pos);
+      }
+
+      let errdoctest = false;
+      if (base === "err-doc-test") {
+        errdoctest = true;
+        base = "";
+        pos = href.indexOf("/");
+        if (pos > 0) {
+          base = href.substring(0, pos);
+          href = href.substring(pos+1);
+        }
+      }
+
+      /*
+        if (base == "") {
+        base = "3.0.0j";
+        href = "3.0.0j/changelog.html";
+        }
+      */
+
+      let redirect = "";
+      if (base == "") {
+        if (errdoctest) {
+          redirect = `${scheme}/${hostname}/err-doc-test/${versions.currentRelease}/${href}`;
+        } else {
+          redirect = `${scheme}/${hostname}/${versions.currentRelease}/${href}`;
+        }
+      }
+
+      p.innerHTML = `${base}, ${href}<br/>${redirect}`;
     });
-  })
-  .catch((err) => console.error(err));
-
-
+  });
 })();
